@@ -9,16 +9,18 @@
 <body>
   <div class="container">
     <aside class="sidebar">
-      <h2>TODO List</h2>
+      <div class="sidebar-header">
+        <h2>TODO List</h2>
+        <div class="toggle-mode">
+          <input type="checkbox" id="darkmode" />
+          <label for="darkmode" class="switch"></label>
+        </div>
+      </div>
       <button id="add-task-btn">Adaugă sarcină</button>
       <div class="filters">
         <button data-filter="all">Toate</button>
         <button data-filter="completed">Finalizate</button>
         <button data-filter="pending">Necompletate</button>
-      </div>
-      <div class="toggle-mode">
-        <label for="darkmode">🌙</label>
-        <input type="checkbox" id="darkmode" />
       </div>
     </aside>
 

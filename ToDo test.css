@@ -26,8 +26,17 @@ body {
   margin-bottom: 10px;
 }
 
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
 .toggle-mode {
-  margin-top: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 main {
@@ -66,6 +75,64 @@ main {
   display: none;
 }
 
+#darkmode {
+  display: none;
+}
+
+.toggle-mode label {
+  cursor: pointer;
+  font-size: 1.2rem; /* redus de la 2rem */
+  user-select: none;
+}
+
+/* Switch styles */
+.toggle-mode input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-mode .switch {
+  width: 36px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-mode .switch::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggle-mode input[type="checkbox"]:checked + .switch {
+  background: #2196f3;
+}
+
+/* Fundal switch pe dark mode */
+body.dark .toggle-mode input[type="checkbox"]:checked + .switch,
+body.dark-mode .toggle-mode input[type="checkbox"]:checked + .switch {
+  background: #444; /* ton de negru */
+}
+
+body.dark .toggle-mode input[type="checkbox"]:checked + .switch,
+body.dark-mode .toggle-mode input[type="checkbox"]:checked + .switch {
+  background: #888; /* ton de gri mai deschis */
+}
+
+.toggle-mode input[type="checkbox"]:checked + .switch::before {
+  transform: translateX(16px);
+}
+
 /* Dark Mode */
 body.dark {
   background-color: #1c1c1c;
@@ -78,4 +145,9 @@ body.dark .sidebar {
 
 body.dark .task {
   background-color: #333;
+}
+
+body.dark-mode {
+  background: #222;
+  color: #fff;
 }

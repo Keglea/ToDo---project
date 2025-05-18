@@ -32,3 +32,7 @@ saveBtn.addEventListener("click", () => {
 darkToggle.addEventListener("change", () => {
   document.body.classList.toggle("dark", darkToggle.checked);
 });
+
+document.querySelector('.toggle-mode label').addEventListener('click', function() {
+  document.body.classList.toggle('dark-mode');
+});

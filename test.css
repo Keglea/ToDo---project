@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  display: flex;
+  height: 100vh;
+  color: #333;
+}
+
+.app {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: #fdfaf6;
+  padding: 20px;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.05);
+}
+
+.sidebar .user-info {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.sidebar .add-task {
+  background: none;
+  border: none;
+  color: #d1453b;
+  font-weight: bold;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.sidebar nav ul li.active {
+  background-color: #fce6e4;
+  border-radius: 6px;
+  padding-left: 10px;
+}
+
+.projects {
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.main-view {
+  flex-grow: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.main-view h1 {
+  text-align: left;
+}
+
+.add-inline {
+  background: none;
+  border: none;
+  color: #d1453b;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.empty-state img {
+  width: 120px;
+  margin-bottom: 20px;
+}
+
+.empty-state h2 {
+  font-weight: bold;
+}
+
+.empty-state p {
+  color: #666;
+}
