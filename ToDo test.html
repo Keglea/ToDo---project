@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODO List</title>
+  <link rel="stylesheet" href="ToDo test.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>TODO List</h2>
+      <button id="add-task-btn">Adaugă sarcină</button>
+      <div class="filters">
+        <button data-filter="all">Toate</button>
+        <button data-filter="completed">Finalizate</button>
+        <button data-filter="pending">Necompletate</button>
+      </div>
+      <div class="toggle-mode">
+        <label for="darkmode">🌙</label>
+        <input type="checkbox" id="darkmode" />
+      </div>
+    </aside>
+
+    <main>
+      <section id="add-task-form" class="hidden">
+        <h3>Adaugă o sarcină nouă</h3>
+        <input type="text" id="task-title" placeholder="Titlul sarcinii">
+        <textarea id="task-desc" placeholder="Descriere"></textarea>
+        <select id="task-priority">
+          <option value="low">Scăzută</option>
+          <option value="medium">Mediu</option>
+          <option value="high">Ridicată</option>
+        </select>
+        <button id="save-task">Salvează</button>
+      </section>
+
+      <section id="tasks-list"></section>
+    </main>
+  </div>
+
+  <script src="ToDo test.js"></script>
+</body>
+</html>

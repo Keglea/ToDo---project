@@ -1,0 +1,72 @@
+/* POPPINS FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ====== BASE ===== */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --main-box-shadow-3: rgba(255, 255, 255, 0.3);
+    --main-white-color: #fff;
+}
+/* ====== Body ===== */
+body{
+    background-image: url(../img/1710916136_oir-mobi-61y1-p-fon-dlya-telegrama-8.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ====== Form container ===== */
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid var(--main-box-shadow-3);
+    width: 600px;
+    height: 200px;
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    background: var(--main-box-shadow-3);
+    backdrop-filter: blur(30px);
+    /* overflow: hidden; */
+}
+.form-title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+}
+.signOut{
+    padding: 10px 20px;
+    margin-top: 7px;
+    color: white;
+    background-color: #cb0d0d;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+/* ======== Responsive ======== */
+@media (max-width: 892px){
+    .form-container{
+        width: 400px;
+    }
+    .col-1{
+        display: none;
+    }
+    .col-2{
+        width: 100%;
+    }
+}
