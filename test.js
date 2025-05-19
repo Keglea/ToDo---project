@@ -77,6 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
       li.style.alignItems = 'center';
       li.style.cursor = 'pointer';
 
+      // Culoare proiect
+      const colorBox = document.createElement('span');
+      colorBox.className = 'color-box';
+      colorBox.textContent = '#';
+      colorBox.style.background = project.color || '#e06c9f';
+
       const nameSpan = document.createElement('span');
       nameSpan.textContent = project.name;
       nameSpan.style.flex = '1';
@@ -99,20 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
+      li.appendChild(colorBox);
       li.appendChild(nameSpan);
       li.appendChild(delBtn);
       projectsList.appendChild(li);
     });
   }
 
-  addProjectBtn.addEventListener('click', () => {
+  /*addProjectBtn.addEventListener('click', () => {
     const name = prompt('Nume proiect nou:');
     if (name) {
       projects.push({ name, tasks: [] });
       localStorage.setItem('projects', JSON.stringify(projects));
       renderProjects();
     }
-  });
+  });*/
 
   document.querySelector('.add-task').addEventListener('click', showGlobalAddTaskForm);
 
@@ -485,6 +492,75 @@ document.addEventListener('DOMContentLoaded', () => {
   showSection('inbox');
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleBtn = document.querySelector('.toggle-projects');
+  const projectsList = document.querySelector('.projects-list');
+  toggleBtn.addEventListener('click', function() {
+    projectsList.classList.toggle('hidden');
+    toggleBtn.classList.toggle('collapsed');
+  });
+});
+
 document.getElementById('darkmode').addEventListener('change', function() {
   document.body.classList.toggle('dark', this.checked);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // MODAL ADĂUGARE PROIECT
+  const addProjectBtn = document.querySelector('.add-project');
+  const addProjectModal = document.getElementById('add-project-modal');
+  const addProjectForm = document.getElementById('add-project-form');
+  const cancelProjectBtn = document.getElementById('cancel-project');
+  const projectNameInput = document.getElementById('project-name');
+  const projectColorSelect = document.getElementById('project-color');
+  const previewColor = document.getElementById('preview-color');
+  const previewName = document.getElementById('preview-name');
+
+  // Deschide modalul
+  addProjectBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    addProjectModal.classList.remove('hidden');
+    projectNameInput.value = '';
+    previewName.textContent = '';
+    previewColor.style.background = projectColorSelect.value;
+    projectNameInput.focus();
+  });
+
+  // Închide modalul
+  cancelProjectBtn.addEventListener('click', function() {
+    addProjectModal.classList.add('hidden');
+  });
+
+  // Actualizează preview la schimbare denumire/culoare
+  projectNameInput.addEventListener('input', function() {
+    previewName.textContent = projectNameInput.value;
+  });
+  projectColorSelect.addEventListener('change', function() {
+    previewColor.style.background = projectColorSelect.value;
+  });
+
+  // Inițializează preview la deschidere
+  projectColorSelect.addEventListener('change', function() {
+    previewColor.style.background = projectColorSelect.value;
+  });
+
+  // Adaugă proiect (exemplu simplu, adaptează după structura ta)
+  addProjectForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = projectNameInput.value.trim();
+    const color = projectColorSelect.value;
+    if (!name) return;
+    // Adaugă proiectul în array și localStorage
+    projects.push({ name, color, tasks: [] });
+    localStorage.setItem('projects', JSON.stringify(projects));
+    renderProjects();
+    addProjectModal.classList.add('hidden');
+  });
+
+  // Închide modalul la click în afara lui
+  addProjectModal.addEventListener('click', function(e) {
+    if (e.target === addProjectModal) {
+      addProjectModal.classList.add('hidden');
+    }
+  });
 });

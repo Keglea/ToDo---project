@@ -29,9 +29,16 @@
         </ul>
       </nav>
       <div class="projects">
-        <strong>Proiectele mele</strong>
+        <strong>
+          Proiectele mele
+          <button class="add-project" title="Adaugă proiect">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button class="toggle-projects" aria-label="Ascunde proiecte">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </strong>
         <ul class="projects-list"></ul>
-        <button class="add-project">+ Adaugă proiect</button>
       </div>
     </aside>
     <main class="main-view"></main>
@@ -43,6 +50,35 @@
     <div class="recent-opened">
       <h4>Deschise recent</h4>
       <ul class="recent-list"></ul>
+    </div>
+  </div>
+  <div id="add-project-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Adăugare proiect</h3>
+      <form id="add-project-form">
+        <div class="form-group">
+          <label for="project-name">Denumire proiect</label>
+          <input type="text" id="project-name" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="project-color">Culoare</label>
+          <select id="project-color">
+            <option value="#e06c9f" style="color:#e06c9f;">Roz</option>
+            <option value="#2196f3" style="color:#2196f3;">Albastru</option>
+            <option value="#43a047" style="color:#43a047;">Verde</option>
+            <option value="#ffb300" style="color:#ffb300;">Galben</option>
+            <option value="#c62828" style="color:#c62828;">Roșu</option>
+          </select>
+        </div>
+        <div class="form-group preview" id="project-preview">
+          <span class="color-box" id="preview-color">#</span>
+          <span id="preview-name"></span>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cancel-project" class="cancel-btn">Anulează</button>
+          <button type="submit" class="add-btn">Adaugă</button>
+        </div>
+      </form>
     </div>
   </div>
   <script src="test.js"></script>
