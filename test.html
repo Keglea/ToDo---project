@@ -5,36 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inbox sarcini</title>
   <link rel="stylesheet" href="test.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="app">
     <aside class="sidebar">
-      <div class="user-info">👤 Keglea ▼</div>
-      <button class="add-task">➕ Adaugă sarcină</button>
+      <div class="user-info">User-info</div>
+      <div class="toggle-mode">
+        <label class="switch">
+          <input type="checkbox" id="darkmode" />
+          <span class="slider"></span>
+        </label>
+      </div>
+      <button class="add-task"><i class="fa-solid fa-plus"></i> Adaugă sarcină</button>
       <nav>
         <ul>
-          <li><input type="text" placeholder="Căutare" /></li>
-          <li class="active">📥 Inbox</li>
-          <li>📅 Astăzi</li>
-          <li>📆 Următoarele</li>
-          <li>🏷️ Filtre și etichete</li>
-          <li>✅ Finalizate</li>
+          <li><button class="search-button"><i class="fa-solid fa-magnifying-glass"></i> Căutare</button></li>
+          <li class="nav-item active" data-page="inbox"><i class="fa-solid fa-inbox"></i> Inbox</li>
+          <li class="nav-item" data-page="today"><i class="fa-solid fa-calendar-day"></i> Astăzi</li>
+          <li class="nav-item" data-page="upcoming"><i class="fa-solid fa-calendar-week"></i> Următoarele</li>
+          <li class="nav-item" data-page="filters"><i class="fa-solid fa-tags"></i> Filtre și etichete</li>
+          <li class="nav-item" data-page="done"><i class="fa-solid fa-check"></i> Finalizate</li>
         </ul>
       </nav>
       <div class="projects">
-        <strong>Proiectele mele</strong> →
+        <strong>Proiectele mele</strong>
+        <ul class="projects-list"></ul>
+        <button class="add-project">+ Adaugă proiect</button>
       </div>
     </aside>
-
-    <main class="main-view">
-      <h1>Inbox</h1>
-      <button class="add-inline">+ Adaugă sarcină</button>
-      <div class="empty-state">
-        <img src="https://assets.todoist.com/images/pages/empty-states/inbox.svg" alt="Minte liniștită" />
-        <h2>Liniștea ta este neprețuită</h2>
-        <p>Bravo! Toate sarcinile tale sunt organizate cum trebuie.</p>
-      </div>
-    </main>
+    <main class="main-view"></main>
   </div>
+  <div class="search-popup hidden">
+    <div class="search-header">
+      <input type="text" placeholder="Introdu o comandă sau cuvânt..." />
+    </div>
+    <div class="recent-opened">
+      <h4>Deschise recent</h4>
+      <ul class="recent-list"></ul>
+    </div>
+  </div>
+  <script src="test.js"></script>
 </body>
 </html>
