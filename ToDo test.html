@@ -1,46 +1,60 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TODO List</title>
-  <link rel="stylesheet" href="ToDo test.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machet Todo List</title>
+    <link rel="stylesheet" href="ToDo.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>TODO List</h2>
-        <div class="toggle-mode">
-          <input type="checkbox" id="darkmode" />
-          <label for="darkmode" class="switch"></label>
+    <div class="container">
+        <div class="todo-title">
+            <h1>ToDo List</h1>
         </div>
-      </div>
-      <button id="add-task-btn">Adaugă sarcină</button>
-      <div class="filters">
-        <button data-filter="all">Toate</button>
-        <button data-filter="completed">Finalizate</button>
-        <button data-filter="pending">Necompletate</button>
-      </div>
-    </aside>
+        
+        <div class="input-section">
+            <input type="text" id="todoInput" placeholder="Add a new task...">
+            <button class="add-btn" onclick="addTodo()"><i class='bx bx-list-plus' ></i> Add</button>
+        </div>
 
-    <main>
-      <section id="add-task-form" class="hidden">
-        <h3>Adaugă o sarcină nouă</h3>
-        <input type="text" id="task-title" placeholder="Titlul sarcinii">
-        <textarea id="task-desc" placeholder="Descriere"></textarea>
-        <select id="task-priority">
-          <option value="low">Scăzută</option>
-          <option value="medium">Mediu</option>
-          <option value="high">Ridicată</option>
-        </select>
-        <button id="save-task">Salvează</button>
-      </section>
+        <div class="sort-section">
+            <button class="sort-button" onclick="toggleSort()">Sort by Oldest <i class='bx bx-sort' ></i></button>
+        </div>
 
-      <section id="tasks-list"></section>
-    </main>
-  </div>
+        <div class="todo-section">
+            <div class="section-header active" onclick="toggleSection('uncompleted')">
+                <div class="section-header-row">
+                    <h2>Uncompleted Tasks</h2>
+                    <span class="count" id="uncompleted-count">0</span>
+                </div>
+                <span class="chevron"><i class='bx bx-chevron-down' ></i></span>
+            </div>
+            <div class="section-content expanded" id="uncompleted-section">
+                <ul id="uncompletedList">
+                    <li class="todo-item">
+                        <input type="checkbox" class="checkbox">
+                        <span class="todo-text">Play games</span>
+                        <button class="delete-btn"><i class='bx bx-trash' ></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-  <script src="ToDo test.js"></script>
+        <div class="todo-section">
+            <div class="section-header" onclick="toggleSection('completed')">
+                <div class="section-header-row">
+                    <h2>Completed Tasks</h2>
+                    <span class="count" id="completed-count">0</span>
+                </div>
+                <span class="chevron"><i class='bx bx-chevron-down' ></i></span>
+            </div>
+            <div class="section-content" id="completed-section">
+                <ul id="completedList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="ToDo.js"></script>
 </body>
 </html>

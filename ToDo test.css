@@ -1,153 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Outfit:wght@100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+    background:#051B24;
+    padding: 40px 20px;
 }
-
+    
 .container {
-  display: flex;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    background: #E8F3F9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
-.sidebar {
-  background: #f4f4f4;
-  padding: 20px;
-  width: 250px;
-  height: 100vh;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+.todo-title h1 {
+    color: #1a1a1a;
+    text-align: center;
 }
 
-.sidebar h2 {
-  margin-top: 0;
+.input-section {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-.sidebar button,
-.sidebar select {
-  width: 100%;
-  margin-bottom: 10px;
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    transition: border-color 0.3s;
+    outline: none;
 }
 
-.sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
+
+button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
-.toggle-mode {
-  margin: 0;
-  display: flex;
-  align-items: center;
+button:hover {
+    background: #45a049;
+}
+.add-btn{
+    margin-right: 4px;
+    background: #4CAF50;
+    border-radius: 8px;
+    padding: 8px 20px;
+}
+.sort-section {
+   display: flex;
+   justify-content: right;
 }
 
-main {
-  flex: 1;
-  padding: 20px;
+.sort-button {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 10px;
 }
 
-#add-task-form {
-  background: #eee;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px;
+.sort-button:hover {
+    background: #eee;
 }
 
-#add-task-form input,
-#add-task-form textarea,
-#add-task-form select {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
+.todo-section {
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-.task {
-  background: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-left: 5px solid #2196f3;
+.section-header {
+    background: #f8f9fa;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+.section-header-row{
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
 }
 
-.task.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
+.section-header h2 {
+    font-size: 18px;
+    color: #333;
 }
 
-.hidden {
-  display: none;
+.section-header .count {
+    background: #e0e0e0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 14px;
 }
 
-#darkmode {
-  display: none;
+.section-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease-out;
 }
 
-.toggle-mode label {
-  cursor: pointer;
-  font-size: 1.2rem; /* redus de la 2rem */
-  user-select: none;
+.section-content.expanded {
+    overflow: auto;
+    max-height: 1000px;
 }
 
-/* Switch styles */
-.toggle-mode input[type="checkbox"] {
-  display: none;
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    margin: 8px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease;
 }
 
-.toggle-mode .switch {
-  width: 36px;
-  height: 20px;
-  background: #ccc;
-  border-radius: 20px;
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  transition: background 0.3s;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.toggle-mode .switch::before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 3px;
-  width: 14px;
-  height: 14px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform 0.3s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+.todo-text {
+    flex: 1;
+    margin-right: 10px;
 }
 
-.toggle-mode input[type="checkbox"]:checked + .switch {
-  background: #2196f3;
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #666;
 }
 
-/* Fundal switch pe dark mode */
-body.dark .toggle-mode input[type="checkbox"]:checked + .switch,
-body.dark-mode .toggle-mode input[type="checkbox"]:checked + .switch {
-  background: #444; /* ton de negru */
+.delete-btn {
+    background: none;
+    color: #8a2727;
+    padding: 12px;
+    border-radius: 100%;
 }
 
-body.dark .toggle-mode input[type="checkbox"]:checked + .switch,
-body.dark-mode .toggle-mode input[type="checkbox"]:checked + .switch {
-  background: #888; /* ton de gri mai deschis */
+.delete-btn:hover {
+    background: #eee;
 }
 
-.toggle-mode input[type="checkbox"]:checked + .switch::before {
-  transform: translateX(16px);
+.chevron {
+    transition: transform 0.3s ease;
+    font-size: 20px;
 }
 
-/* Dark Mode */
-body.dark {
-  background-color: #1c1c1c;
-  color: #f1f1f1;
+.section-header.active .chevron {
+    transform: rotate(180deg);
 }
-
-body.dark .sidebar {
-  background-color: #2c2c2c;
+.checkbox{
+    appearance: none;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #666;
+    border-radius: 100%;
+    display: grid;
+    place-content: center;
+    margin-right: 10px;
+    cursor: pointer;
 }
-
-body.dark .task {
-  background-color: #333;
+.checkbox::before{
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 -2 24 24' style='fill: rgba(255, 255, 255, 1);transform: ;msFilter:;'%3E%3Cpath d='m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z'%3E%3C/path%3E%3C/svg%3E");
+    transform: scale(0);
 }
-
-body.dark-mode {
-  background: #222;
-  color: #fff;
+.checkbox:checked{
+    background-color: #8d51e8;
+    border-color: #8d51e8;
+}
+.checkbox:checked::before{
+    transform: scale(1);
 }

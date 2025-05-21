@@ -1,60 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machet Todo List</title>
-    <link rel="stylesheet" href="ToDo.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ToDo List</title>
+  <link rel="stylesheet" href="ToDo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="todo-title">
-            <h1>ToDo List</h1>
-        </div>
-        
-        <div class="input-section">
-            <input type="text" id="todoInput" placeholder="Add a new task...">
-            <button class="add-btn" onclick="addTodo()"><i class='bx bx-list-plus' ></i> Add</button>
-        </div>
-
-        <div class="sort-section">
-            <button class="sort-button" onclick="toggleSort()">Sort by Oldest <i class='bx bx-sort' ></i></button>
-        </div>
-
-        <div class="todo-section">
-            <div class="section-header active" onclick="toggleSection('uncompleted')">
-                <div class="section-header-row">
-                    <h2>Uncompleted Tasks</h2>
-                    <span class="count" id="uncompleted-count">0</span>
-                </div>
-                <span class="chevron"><i class='bx bx-chevron-down' ></i></span>
-            </div>
-            <div class="section-content expanded" id="uncompleted-section">
-                <ul id="uncompletedList">
-                    <li class="todo-item">
-                        <input type="checkbox" class="checkbox">
-                        <span class="todo-text">Play games</span>
-                        <button class="delete-btn"><i class='bx bx-trash' ></i></button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="todo-section">
-            <div class="section-header" onclick="toggleSection('completed')">
-                <div class="section-header-row">
-                    <h2>Completed Tasks</h2>
-                    <span class="count" id="completed-count">0</span>
-                </div>
-                <span class="chevron"><i class='bx bx-chevron-down' ></i></span>
-            </div>
-            <div class="section-content" id="completed-section">
-                <ul id="completedList"></ul>
-            </div>
-        </div>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="user-info">User-info</div>
+      <div class="toggle-mode">
+        <label class="switch">
+          <input type="checkbox" id="darkmode" />
+          
+        </label>
+      </div>
+      <button class="add-task"><i class="fa-solid fa-plus"></i> Adaugă sarcină</button>
+      <nav>
+        <ul>
+          <li><button class="search-button"><i class="fa-solid fa-magnifying-glass"></i> Căutare</button></li>
+          <li class="nav-item active" data-page="inbox"><i class="fa-solid fa-inbox"></i> Inbox</li>
+          <li class="nav-item" data-page="today"><i class="fa-solid fa-calendar-day"></i> Astăzi</li>
+          <li class="nav-item" data-page="upcoming"><i class="fa-solid fa-calendar-week"></i> Următoarele</li>
+          <li class="nav-item" data-page="filters"><i class="fa-solid fa-tags"></i> Filtre și etichete</li>
+          <li class="nav-item" data-page="done"><i class="fa-solid fa-check"></i> Finalizate</li>
+        </ul>
+      </nav>
+      <div class="projects">
+        <strong class="projects-header">
+          Proiectele mele
+          <button class="add-project" title="Adaugă proiect">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+          <button class="toggle-projects" aria-label="Ascunde proiecte">
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+        </strong>
+        <ul class="projects-list"></ul>
+      </div>
+    </aside>
+    <main class="main-view"></main>
+  </div>
+  <div class="search-popup hidden">
+    <div class="search-header">
+      <input type="text" placeholder="Introdu denumirea sarcinii..." />
     </div>
-
-    <script src="ToDo.js"></script>
+    <div class="recent-opened">
+      <h4>Deschise recent</h4>
+      <ul class="recent-list"></ul>
+    </div>
+  </div>
+  <div id="add-project-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Adăugare proiect</h3>
+      <form id="add-project-form">
+        <div class="form-group">
+          <label for="project-name">Denumire proiect</label>
+          <input type="text" id="project-name" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="project-color">Culoare</label>
+          <select id="project-color">
+            <option value="#e06c9f" style="color:#e06c9f;">Roz</option>
+            <option value="#2196f3" style="color:#2196f3;">Albastru</option>
+            <option value="#43a047" style="color:#43a047;">Verde</option>
+            <option value="#ffb300" style="color:#ffb300;">Galben</option>
+            <option value="#c62828" style="color:#c62828;">Roșu</option>
+          </select>
+        </div>
+        <div class="form-group preview" id="project-preview">
+          <span class="color-box" id="preview-color">#</span>
+          <span id="preview-name"></span>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="cancel-project" class="cancel-btn">Anulează</button>
+          <button type="submit" class="add-btn">Adaugă</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="task-dates" style="font-size:0.85em; color:#aaa; margin-top:2px;">
+    ${task.startDate ? `<span><i class="fa fa-play"></i> ${task.startDate}</span> ` : ''}
+    ${task.dueDate ? `<span><i class="fa fa-flag-checkered"></i> ${task.dueDate}</span> ` : ''}
+    ${task.duration ? `<span><i class="fa fa-hourglass"></i> ${task.duration} zile</span>` : ''}
+  </div>
+  <script src="ToDo.js"></script>
 </body>
 </html>
