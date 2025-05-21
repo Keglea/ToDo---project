@@ -79,6 +79,7 @@ body{
 }
 .dots{
     animation: scale-up 3s ease-in-out alternate infinite ;
+    z-index: 10;
 }
 .rocket{
     animation: up-down 3s ease-in-out alternate infinite ;
@@ -292,4 +293,18 @@ body{
     .col-2{
         width: 100%;
     }
+}
+
+.form-image.cloud {
+  width: 300px;
+  height: auto;
+}
+
+
+.form-image.coin {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  height: auto;
 }
